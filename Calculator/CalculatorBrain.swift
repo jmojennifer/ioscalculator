@@ -8,14 +8,6 @@
 
 import Foundation
 
-func changeSign(operand: Double) -> Double {
-    return -operand
-}
-
-func multiply(opt1: Double, opt2: Double) -> Double {
-    return opt1 * opt2
-}
-
 //stucts automatically initialize vars by default
 struct CalculatorBrain {
     
@@ -36,8 +28,11 @@ struct CalculatorBrain {
         "e" : Operation.constant(M_E),
         "√" : Operation.unaryOperation(sqrt),
         "cos" : Operation.unaryOperation(cos),
-        "±" : Operation.unaryOperation(changeSign),
-        "x" : Operation.binaryOperation(multiply),
+        "±" : Operation.unaryOperation({ -$0 }),
+        "×" : Operation.binaryOperation({ $0 * $1 }),
+        "÷" : Operation.binaryOperation({ $0 / $1 }),
+        "+" : Operation.binaryOperation({ $0 + $1 }),
+        "−" : Operation.binaryOperation({ $0 - $1 }),
         "=" : Operation.equals
     ]
     
